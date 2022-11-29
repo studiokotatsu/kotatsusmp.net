@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    {{ content }}
+    {% include footer.html %}
+    <script src="/js/vendor.js?{{ site.time | date:'%s' }}"></script>
+    <script src="/js/main.js?{{ site.time | date:'%s' }}"></script>
+  </body>
+</html>

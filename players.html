@@ -1,0 +1,35 @@
+---
+layout:    hero
+title:     Players
+permalink: /players/
+---
+<div class="columns is-multiline is-centered">
+{% for _page in site.pages %}
+{% if _page.layout == 'profile' %}
+
+  <div class="column is-6">
+    <a href="{{ _page.url }}">
+    <div class="card is-shady">
+      <div class="card-content">
+        <div class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="/img/players/{{ _page.image }}-avatar.png" class="is-rounded">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p><strong>{{ _page.title }}</strong><br>
+              {{ _page.subtitle }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+{% endif %}
+{% endfor %}
+</div>
+

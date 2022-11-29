@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    <section class="hero is-primary is-medium" style="background-image: url(/img/players/{{ page.image }}-header.jpg);">
+      <div class="hero-head">
+        {% include header.html %}
+      </div>
+      <div class="hero-body mb-6">
+        <div class="container has-text-centered">
+          <h1 class="title is-size-2-tablet">
+          {{ page.title }}
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section class="container is-max-desktop section" style="margin-top: -9em;">
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="{% link index.html %}">Kotatsu SMP</a></li>
+          <li><a href="{% link players.html %}">Players</a></li>
+          <li class="is-active"><a href="#" aria-current="page">{{ page.title }}</a></li>
+        </ul>
+      </nav>
+      <div class="columns features">
+        <div class="column is-4">
+          <div class="card is-shady">
+            <div class="card-image has-text-centered">
+              <figure class="image is-1by1">
+                <img src="/img/players/{{ page.image }}-avatar.png" alt="">
+              </figure>
+            </div>
+            <div class="card-content">
+              {% include socials.html %}
+            </div>
+          </div>
+        </div>
+        <div class="column is-8">
+          <div class="card is-shady">
+            <div class="card-content">
+              <div class="content">
+                {{ content }}
+              </div>
+            </div>
+            <div class="card-image has-text-centered">
+              <figure class="image is-2by1">
+                <img src="https://placekitten.com/640/320" alt="">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% include footer.html %}
+    <script src="/js/vendor.js?{{ site.time | date:'%s' }}"></script>
+    <script src="/js/main.js?{{ site.time | date:'%s' }}"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{% for social in page.socials %}
+	{% assign partial = 'partials/social-' | append: social[0] | append: '.html' %}
+
+	{% if site.supported_socials contains social[0] %}
+		{% include {{ partial }} %}
+	{% else %}
+<a class="expand large social generic" href="//{{ social[1] }}">
+	<span class="icon-text">
+		<span class="icon">
+			<i class="fas fa-link"></i>
+		</span>
+		<span>{{ social[0] }}</span>
+	</span>
+</a>
+	{% endif %}
+
+{% endfor %}

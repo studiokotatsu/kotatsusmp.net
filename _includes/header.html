@@ -1,0 +1,51 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <strong>Kotatsu SMP</strong>
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="is-hidden-tablet">
+          {% for _page in site.pages %}
+          {% if _page.title %}
+          {% unless _page.index == false %}
+          <a class="navbar-item" href="{{ _page.url }}">{{ _page.title }}</a>
+          {% endunless %}
+          {% endif %}
+          {% endfor %}
+          <a class="navbar-item" href="https://map.kotatsusmp.net/">View live map</a>
+        </div>
+
+        <div class="tabs is-right is-hidden-mobile">
+          <ul>
+            <li{% if page.url == '/'%} class="is-active"{% endif%}>
+              <a class="navbar-item" href="{% link index.html %}">Home</a>
+            </li>
+            {% for _page in site.pages %}
+            {% if _page.title %}
+            {% unless _page.index == false %}
+            <li{% if _page.url == page.url%} class="is-active"{% endif%}>
+              <a class="navbar-item" href="{{ _page.url }}">{{ _page.title }}</a>
+            </li>
+            {% endunless %}
+            {% endif %}
+            {% endfor %}
+          </ul>
+          <span class="navbar-item">
+            <a class="button is-white is-outlined" href="https://map.kotatsusmp.net/">
+              <span title="Hello from the other side">View live map</span>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

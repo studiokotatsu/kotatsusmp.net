@@ -1,0 +1,123 @@
+$brand-colour-discord:   #7289DA;
+$brand-colour-facebook:  #1778f2;
+$brand-colour-github:    #24292f;
+$brand-colour-instagram: #f00a75;
+$brand-colour-kofi:      #FF5E5B;
+$brand-colour-mastodon:  #6364FF;
+$brand-colour-patreon:   #FF424D;
+$brand-colour-tiktok:    #121212;
+$brand-colour-tumblr:    #35465c;
+$brand-colour-twitch:    #9146FF;
+$brand-colour-twitter:   #1DA1F2;
+$brand-colour-youtube:   #FF0000;
+
+@mixin outlined($color) {
+	background-color: transparent;
+	border-color: $color;
+	color: $color;
+
+	&:hover, &.is-hovered, &:focus, &.is-focused {
+		background-color: $color;
+		border-color: $color;
+		color: #fff !important;
+	}
+
+}
+
+a.social {
+	@extend .button;
+	font-weight: bold;
+	&:not(&.generic) {
+		i {
+			@extend .fab;
+			@extend .fa-fw;		
+		}
+	}
+	.is-live {
+		@extend .tag; 
+		@extend .is-danger;
+		position: absolute; 
+		right: 0.75rem; 
+		font-weight: bold; 
+		text-transform: uppercase;
+	}
+	&.kofi {
+		@include outlined($brand-colour-kofi);
+		img { 
+			height: 2em; 
+			margin-right: 0.1em; 
+			margin-top: -0.1em;
+		}
+		&:hover, &.is-hovered, &:focus, &.is-focused {
+			img {
+				content: url('/img/kofi-logo.png');
+			}
+		}
+		
+	}
+	&.tiktok {
+		@include outlined($brand-colour-tiktok);
+		i { @extend .fa-tiktok; }
+	}
+	&.github {
+		@include outlined($brand-colour-github);
+		i { @extend .fa-github; }
+	}
+	&.mastodon {
+		@include outlined($brand-colour-mastodon);
+		i { @extend .fa-mastodon; }
+	}
+	&.discord {
+		@include outlined($brand-colour-discord);
+		i { @extend .fa-discord; }
+	}
+	&.twitch {
+		@include outlined($brand-colour-twitch);
+		i { @extend .fa-twitch; }
+	}
+	&.twitter {
+		@include outlined($brand-colour-twitter);
+		i { @extend .fa-twitter; }
+	}
+	&.youtube {
+		@include outlined($brand-colour-youtube);
+		i { @extend .fa-youtube; }
+	}
+	&.patreon {
+		@include outlined($brand-colour-patreon);
+		i { @extend .fa-patreon; }
+	}
+	&.tumblr {
+		@include outlined($brand-colour-tumblr);
+		i { @extend .fa-tumblr; }
+	}
+	&.instagram {
+		@include outlined($brand-colour-instagram);
+		i { @extend .fa-instagram; }
+	}
+	&.facebook {
+		@include outlined($brand-colour-facebook);
+		i { @extend .fa-facebook; }
+	}
+
+	&.generic {
+		@include outlined($grey-darker);
+		.icon-text {
+			text-transform: capitalize;
+		}
+	}
+}
+
+a.social.expand {
+	@extend .social;
+	@extend .is-fullwidth;	
+	+ a.social.expand {
+		margin-top: 0.75rem;
+	}
+}
+a.social.large {
+	@extend .social;
+	@extend .is-large;
+}
+
+
