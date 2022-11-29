@@ -1,45 +1,35 @@
-name: Build and deploy Jekyll site to GitHub Pages
+name: Testing the GitHub Pages publication
 
 on:
-  push:
-    branches:
-      - main
+  push
 
 jobs:
-  github-pages:
+  jekyll:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+    # Use GitHub Actions' cache to shorten build times and decrease load on servers
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
 
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-        #run: echo "{name}={value}" >> $GITHUB_OUTPUT
-        #run: echo "::set-output name=dir::$(yarn cache dir)"
+    # Standard usage
+    - uses:  helaili/jekyll-action@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-website-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-website-
+    # Specify the Jekyll source location as a parameter
+    - uses: helaili/jekyll-action@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        jekyll_src: 'sample_site'
 
-      - run: yarn install --frozen-lockfile
- 
-      - uses: actions/cache@v3
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - uses: helaili/jekyll-action@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          target_branch: 'gh-pages'
+    # Specify the target branch (optional)
+    - uses: helaili/jekyll-action@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        target_branch: 'gh-pages'
